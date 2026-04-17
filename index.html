@@ -178,16 +178,6 @@
         radial-gradient(circle at 54% 60%, rgba(255,255,255,.6) 0 5px, transparent 6px);
       filter:blur(.2px);
     }
-    .roundel{
-      position:absolute; right:22px; top:22px;
-      width:180px; height:180px; border-radius:50%;
-      background:radial-gradient(circle at 35% 35%, #fff 0 15%, #fff7 16%, #fff0 17%), rgba(255,255,255,.14);
-      border:2px dashed rgba(255,255,255,.52);
-      display:grid; place-items:center; text-align:center;
-      color:#fff; font-family:Fraunces,serif; font-size:34px; line-height:.9;
-      animation:float 5s var(--ease) infinite alternate;
-    }
-    @keyframes float{from{transform:translateY(0)}to{transform:translateY(-10px)}}
     .section{
       height:100%; display:grid; grid-template-columns:1fr 1fr; gap:28px;
       padding:clamp(24px,4vw,56px); align-items:center;
@@ -355,7 +345,6 @@
       .topbar{top:10px; left:10px; right:10px; font-size:11px}
       .scrollbar{display:none}
       .nav-arrows{display:none}
-      .roundel{width:120px; height:120px; font-size:24px; right:14px; top:14px}
       .pulse{width:260px; height:260px}
     }
     @media (prefers-reduced-motion: reduce){
@@ -399,7 +388,6 @@
           </div>
           <div class="hero-art media-panel" style="overflow:hidden;border-radius:32px;position:relative">
             <img src="images/slide-01-storefront.webp" alt="Trader Joe's storefront" />
-            <div class="roundel">Since<br>1958</div>
             <div class="media-caption">Retail experience, neighborhood energy, and human connection.</div>
           </div>
         </div>

@@ -42,6 +42,14 @@
       pointer-events:none;
     }
     .slide.active{opacity:1; transform:translateY(0) scale(1); pointer-events:auto}
+    .slide.enter-up{animation:slideEnterUp .48s var(--ease) both}
+    .slide.enter-down{animation:slideEnterDown .48s var(--ease) both}
+    .slide.exit-up{animation:slideExitUp .35s var(--ease) both}
+    .slide.exit-down{animation:slideExitDown .35s var(--ease) both}
+    @keyframes slideEnterUp{from{opacity:0; transform:translateY(34px) scale(.98)}to{opacity:1; transform:translateY(0) scale(1)}}
+    @keyframes slideEnterDown{from{opacity:0; transform:translateY(-34px) scale(.98)}to{opacity:1; transform:translateY(0) scale(1)}}
+    @keyframes slideExitUp{from{opacity:1; transform:translateY(0) scale(1)}to{opacity:0; transform:translateY(-22px) scale(.99)}}
+    @keyframes slideExitDown{from{opacity:1; transform:translateY(0) scale(1)}to{opacity:0; transform:translateY(22px) scale(.99)}}
     .frame{
       width:min(1600px,100%);
       height:min(900px,100%);
@@ -183,6 +191,31 @@
     .section{
       height:100%; display:grid; grid-template-columns:1fr 1fr; gap:28px;
       padding:clamp(24px,4vw,56px); align-items:center;
+    }
+    .media-panel{
+      position:relative; height:100%; min-height:320px;
+      border-radius:32px; overflow:hidden;
+      border:1px solid rgba(255,255,255,.34);
+      box-shadow:0 20px 48px rgba(25,20,31,.18);
+      isolation:isolate;
+    }
+    .media-panel img{
+      width:100%; height:100%; object-fit:cover; display:block;
+      transform:scale(1.05);
+      animation:kenburns 16s var(--ease) infinite alternate;
+    }
+    .media-panel::before{
+      content:""; position:absolute; inset:0; z-index:2;
+      background:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.45));
+    }
+    .media-caption{
+      position:absolute; left:20px; right:20px; bottom:18px; z-index:3;
+      color:#fff; font-weight:600; letter-spacing:.02em; line-height:1.35;
+      text-shadow:0 2px 16px rgba(0,0,0,.35);
+    }
+    @keyframes kenburns{
+      from{transform:scale(1.05) translate3d(0,0,0)}
+      to{transform:scale(1.13) translate3d(-1.2%, -1.4%, 0)}
     }
     .card{
       background:rgba(255,255,255,.68);
@@ -369,10 +402,10 @@
               <span style="color:rgba(255,255,255,.85); font-weight:500">Prof. Keisha Hall</span>
             </div>
           </div>
-          <div class="hero-art" style="overflow:hidden;border-radius:32px;position:relative">
-            <div class="sketch"></div>
-            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.08),rgba(210,18,66,.18))"></div>
+          <div class="hero-art media-panel" style="overflow:hidden;border-radius:32px;position:relative">
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1400&q=80" alt="Aisle de supermercado com carrinho de compras" />
             <div class="roundel">Since<br>1958</div>
+            <div class="media-caption">Retail experience, neighborhood energy, and human connection.</div>
           </div>
         </div>
       </div>
@@ -404,9 +437,9 @@
             </div>
           </div>
         </div>
-        <div class="artboard texture" style="background:none;overflow:hidden">
-          <div style="position:absolute;inset:0;background:linear-gradient(135deg,#D21242,#F6C54A);opacity:.92"></div>
-          <div style="position:absolute;inset:0;display:grid;place-items:center;color:#fff;text-align:center;padding:40px;z-index:2">
+        <div class="artboard texture media-panel" style="background:none;overflow:hidden">
+          <img src="https://images.unsplash.com/photo-1561715276-a2d087060f1d?auto=format&fit=crop&w=1400&q=80" alt="Fachada de mercado em rua urbana" />
+          <div style="position:absolute;inset:0;display:grid;place-items:center;color:#fff;text-align:center;padding:40px;z-index:3">
             <div>
               <div style="font-family:Fraunces,serif; font-size:clamp(72px,8vw,128px); line-height:.9; letter-spacing:-.04em; font-weight:900">1967</div>
               <div style="margin-top:14px; letter-spacing:.18em; text-transform:uppercase; font-weight:800; opacity:.92">Founding year</div>
@@ -432,6 +465,10 @@
           <div class="value enter delay3"><div class="mini"></div><strong>Alignment between internal culture and strategy</strong></div>
           <div class="value enter delay1"><div class="mini"></div><strong>Emphasis on customer experience</strong></div>
         </div>
+        <div class="media-panel enter delay2" style="margin-top:18px; min-height:280px">
+          <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1500&q=80" alt="Equipe de loja em reunião de alinhamento" />
+          <div class="media-caption">Culture becomes visible in the way teams collaborate every day.</div>
+        </div>
       </div>
     </section>
 
@@ -442,6 +479,10 @@
           <div class="eyebrow enter">Slide 4</div>
           <h2 class="enter delay1" style="margin-top:12px">Employee Relations</h2>
           <p class="enter delay2" style="margin-top:18px">How Trader Joe&#8217;s treats and retains its workforce.</p>
+          <div class="media-panel enter delay3" style="margin-top:18px; min-height:300px">
+            <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=1400&q=80" alt="Funcionária atendendo cliente com sorriso no caixa" />
+            <div class="media-caption">Frontline teams drive trust, loyalty, and store atmosphere.</div>
+          </div>
         </div>
         <div class="card" style="display:grid; gap:16px; align-content:start">
           <div class="quote enter delay1"><p>Strong employee appreciation with positive and collaborative work environment.</p></div>
@@ -459,6 +500,10 @@
           <div class="eyebrow enter">Slide 5</div>
           <h2 class="enter delay1" style="margin-top:12px">Responsibility and Ethical Practices</h2>
           <p class="enter delay2" style="margin-top:18px">How responsibility shows up across product, supply chain, and brand.</p>
+          <div class="media-panel enter delay1" style="margin-top:18px; min-height:300px">
+            <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=1400&q=80" alt="Produtos frescos organizados em prateleira de mercado" />
+            <div class="media-caption">Quality control and responsible sourcing are part of the promise.</div>
+          </div>
         </div>
         <div class="card enter delay3" style="height:100%">
           <div style="display:grid; gap:16px; margin-top:4px">
@@ -483,6 +528,10 @@
             <h2 class="enter delay1" style="margin-top:12px">Ethical Challenges</h2>
           </div>
           <p class="enter delay2" style="max-width:48ch">Tensions and pressures the company faces as it grows.</p>
+        </div>
+        <div class="media-panel enter delay3" style="margin-top:18px; min-height:250px">
+          <img src="https://images.unsplash.com/photo-1601599561213-832382fd07ba?auto=format&fit=crop&w=1500&q=80" alt="Centro de distribuição com pallets e caixas" />
+          <div class="media-caption">Growth increases complexity across logistics, costs, and supplier oversight.</div>
         </div>
         <div class="product-grid" style="margin-top:20px; grid-template-columns:repeat(4,1fr)">
           <div class="product enter delay1" style="padding:22px; min-height:170px; display:block">
@@ -523,9 +572,12 @@
             </div>
           </div>
         </div>
-        <div class="card enter delay3" style="height:100%; background:linear-gradient(180deg, rgba(210,18,66,.06), rgba(246,197,74,.08)); border:1px solid rgba(210,18,66,.18); display:flex; flex-direction:column; justify-content:center">
-          <div class="eyebrow" style="color:var(--red)">Conclusion</div>
-          <h3 style="margin-top:14px; font-size:clamp(26px,2.6vw,38px); line-height:1.15; color:var(--ink)">A solid ethical culture that requires continuous adaptation to remain effective.</h3>
+        <div class="media-panel enter delay3" style="height:100%">
+          <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1400&q=80" alt="Grupo executivo analisando resultados em mesa de reunião" />
+          <div style="position:absolute; inset:auto 0 0 0; z-index:3; padding:24px; background:linear-gradient(180deg, transparent, rgba(0,0,0,.68))">
+            <div class="eyebrow" style="color:#F6C54A">Conclusion</div>
+            <h3 style="margin-top:10px; font-size:clamp(26px,2.6vw,38px); line-height:1.15; color:#fff">A solid ethical culture that requires continuous adaptation to remain effective.</h3>
+          </div>
         </div>
       </div>
     </section>
@@ -537,6 +589,10 @@
           <div class="eyebrow enter">Slide 8</div>
           <h2 class="enter delay1" style="margin-top:12px">References</h2>
           <p class="enter delay2" style="margin-top:14px">Academic and reliable sources with links.</p>
+        </div>
+        <div class="media-panel enter delay3" style="min-height:220px">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80" alt="Mesa com notebook, livros e anotações de pesquisa" />
+          <div class="media-caption">Evidence-backed insights from strategy and ethics literature.</div>
         </div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px">
           <div class="card enter delay1" style="padding:18px">
@@ -608,6 +664,8 @@
     function show(n, opts = {}){
       const clamped = Math.max(0, Math.min(slides.length - 1, n));
       if(clamped === index && !opts.force) { updateUI(); return; }
+      const previous = index;
+      const direction = clamped > previous ? 1 : -1;
       index = clamped;
 
       if(isMobile()){
@@ -615,7 +673,14 @@
         slides[index].scrollIntoView({ behavior: opts.instant ? 'auto' : 'smooth', block: 'start' });
       } else {
         // On desktop, use the absolute-positioned slide system
+        slides.forEach(s=>s.classList.remove('enter-up','enter-down','exit-up','exit-down'));
         slides.forEach((s,i)=>s.classList.toggle('active', i===index));
+        if(!opts.force && previous !== index){
+          const incoming = slides[index];
+          const outgoing = slides[previous];
+          incoming.classList.add(direction > 0 ? 'enter-up' : 'enter-down');
+          outgoing.classList.add(direction > 0 ? 'exit-up' : 'exit-down');
+        }
         slides[index].querySelectorAll('[data-count]').forEach(el=>{
           el.textContent = '0';
           animateCount(el);
